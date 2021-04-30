@@ -21,7 +21,7 @@ class RoomSeeder extends AbstractByDataSeeder
      */
     protected  function items(){
         $items=[];
-        for($i=0;$i<3;$i++){
+        for($i=1;$i<=3;$i++){
             $dailyCost=$this->dailyCostDefination();
 
             $items[$i]=[
@@ -50,7 +50,7 @@ class RoomSeeder extends AbstractByDataSeeder
         {
             $dailyCost=[];
             $day = today();
-            for($i=0;$i<10;$i++){
+            for($i=0;$i<200;$i++){
                 $day=$day->addDay();
                 $boardCost=rand(300,400);
                 $dailyCost  [$day->toDateString()]=[

@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/hotel/{hotel}/{date}/{num}','App\Http\Controllers\RoomController@index');
+

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Room;
+use App\Models\Hotel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+
 
 class RoomController extends Controller
 {
@@ -12,74 +14,18 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($hotel,$date,$num)
     {
-        //
+
+        $date=Carbon::createFromFormat('Y-m-d', $date);
+        $title=Hotel::generateTitleOfCostChart($date,$num);
+        $hotel=Hotel::where('name_town',$hotel)->with('rooms.type')->first();
+        return view('index')
+            ->withHotel($hotel)
+            ->withTitle($title)
+            ->withNum($num)
+            ->withDate($date);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Room $room)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Room $room)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Room $room)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Room  $room
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Room $room)
-    {
-        //
-    }
 }
