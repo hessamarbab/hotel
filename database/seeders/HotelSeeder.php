@@ -3,16 +3,30 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
-class HotelSeeder extends Seeder
+use App\Models\Hotel;
+class HotelSeeder extends AbstractByDataSeeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
+    protected $modelClass=Hotel::class;
+      /**
+     * return data that need to seed
      */
-    public function run()
-    {
-        //
+    protected  function items(){
+        return[
+            'azadi-tehran',
+            'toranj-kish'
+        ];
     }
+        /**
+     * give data form
+     *
+     * @return array
+     */
+    protected  function format($item,$counterId){
+        return [
+            'id'=>$counterId,
+            'name_town'=>$item
+        ];
+    }
+
+
 }

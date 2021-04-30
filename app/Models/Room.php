@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    protected $casts = [
+        'daily_cost' => 'array'
+    ];
+    public function type()
+    {
+        return $this->belongsTo(RoomType::class);
+    }
+    public function hotel()
+    {
+        return $this->belongsTo(Hotel::class);
+    }
 }
